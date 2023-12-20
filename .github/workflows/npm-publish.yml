@@ -17,22 +17,15 @@ jobs:
         node-version: "16"
         registry-url: "https://registry.npmjs.org"
 
-    - name: Install dependencies for JS SDK
+    - name: Install dependencies
       run: npm install
-      working-directory: packages/sdk/js
 
     - name: Publish JS SDK to NPM
-      run: npm publish
-      working-directory: packages/sdk/js
+      run: npm publish --workspace=sdk/js
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Install dependencies for React components
-      run: npm install
-      working-directory: packages/ui/lib
-
     - name: Publish React components to NPM
-      run: npm publish
-      working-directory: packages/ui/lib
+      run: npm publish --workspace=ui/lib
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
